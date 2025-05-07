@@ -319,6 +319,27 @@
     }
     .contact-btn {
       min-width: 120px;
+      background: #222;
+      color: #ededed;
+      font-family: 'Inter', Arial, sans-serif;
+      font-size: 1.1rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      text-decoration: none;
+      border: none;
+      border-radius: 0;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+      transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+      cursor: pointer;
+      text-align: center;
+      padding: 0.7rem 1.5rem;
+      outline: none;
+    }
+    .contact-btn:hover, .contact-btn:focus {
+      background: #333;
+      color: #fff;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.18);
     }
     @media (max-width: 900px) {
       main {
@@ -362,8 +383,8 @@
   </div>
   <div class="site-content" id="siteContent">
     <div class="nav-wrapper">
-      <button class="menu-btn" aria-label="Open navigation">Menu</button>
-      <nav class="nav">
+      <button class="menu-btn" id="menuBtn" aria-label="Open navigation">+</button>
+      <nav class="nav" id="mainNav">
         <a href="#about">About</a>
         <a href="#fashion">Fashion Work</a>
         <a href="#tech">Tech & Experience</a>
@@ -482,6 +503,17 @@
       window.addEventListener('wheel', handleOverlayScroll, { passive: false });
       window.addEventListener('touchmove', handleOverlayScroll, { passive: false });
     });
+    // Toggle + and - for menu button
+    const menuBtn = document.getElementById('menuBtn');
+    const navWrapper = menuBtn.parentElement;
+    menuBtn.innerText = '+';
+    function setMenuSymbol(open) {
+      menuBtn.innerText = open ? '-' : '+';
+    }
+    navWrapper.addEventListener('mouseenter', () => setMenuSymbol(true));
+    navWrapper.addEventListener('mouseleave', () => setMenuSymbol(false));
+    navWrapper.addEventListener('focusin', () => setMenuSymbol(true));
+    navWrapper.addEventListener('focusout', () => setMenuSymbol(false));
   </script>
 </body>
 </html>
